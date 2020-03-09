@@ -1,29 +1,37 @@
 import React, { Component } from 'react';
 import PortfolioContainer from './PortfolioContainer';
 import FormContainer from './FormContainer';
-import NavBar from '../components/NavBar'
-import tokens from '../config_keys.js'
+import tokens from '../config_keys.js';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 export default class MainContainer extends Component {
 
     state = {
         userStocks: [],
-        marketStocks: [],
-        currentUser: {}
+        currentUser: {},
+        userBalance: 0
     }
     
     componentDidMount(){
-        //get the current users stocks from backend
-        fetch("http://localhost:3000/holdings")
-        .then(r => r.json())
-        .then((stocksResponse) => {
-            //console.log(stocksResponse)
+
+        fetch('http://localhost:3000/profile',{
+            headers: {
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        })
+        .then(res => res.json())
+        .then((user) => {
+            // console.log(user)   
             this.setState({
-                userStocks: stocksResponse
+                userStocks: user.holdings,
+                currentUser: user,
+                userBalance: user.balance
             })
         })
+        
+    }
+    buyStock =()=>{
 
-        // get the market stocks from api
     }
 
     render() {
@@ -32,10 +40,10 @@ export default class MainContainer extends Component {
             <div>
                 <div className="row">
                     <div className="col-8">
-                        <PortfolioContainer stocks = {this.state.userStocks} getStockInfo = {this.getStockInfo}/>
+                        <PortfolioContainer currentUser={this.state.currentUser} stocks = {this.state.userStocks} getStockInfo = {this.getStockInfo}/>
                     </div>
                     <div className="col-4">
-                        <FormContainer getStockInfo = {this.getStockInfo}/>
+                        <FormContainer currentUser={this.state.currentUser} balance= {this.state.userBalance} getStockInfo = {this.getStockInfo} buyStock ={this.buyStock}/>
                     </div>
                 </div>
             </div>

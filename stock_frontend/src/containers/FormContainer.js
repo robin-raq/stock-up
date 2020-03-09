@@ -24,7 +24,7 @@ export default class FormContainer extends Component {
         .then((stockObj) => {
             console.log(stockObj)
             const newTotal = this.state.quantity * stockObj.latestPrice
-            const transaction = { ticker: stockObj.symbol, price: stockObj.latestPrice}
+            const transaction = { ticker: stockObj.symbol, price: stockObj.latestPrice, quantity: this.state.quantity}
             this.setState({
                 transaction: transaction,
                 total: newTotal
@@ -39,7 +39,7 @@ export default class FormContainer extends Component {
         
     }
     render() {
-        // console.log(this.state)
+        console.log(this.props)
         const {price, ticker} = this.state.transaction
         return (
             <div className="pa4-l">
@@ -48,13 +48,13 @@ export default class FormContainer extends Component {
 
                 <form className="bg-light-yellow mw7 center pa4 br2-ns ba b--black-10" onSubmit = {this.handleSubmit}>
                 <fieldset className="cf bn ma0 pa0">
-                    <legend className="pa0 f5 f4-ns mb3 black-80"> <strong>Current Balance: ${this.state.balance}</strong></legend>
+                    <legend className="pa0 f5 f4-ns mb3 black-80"> <strong>Current Balance: ${this.props.balance}</strong></legend>
                     <div class="cf">
 
-                        <label class="db fw4 lh-copy f6" >Ticker/Symbol</label>
+                        <label className="db fw4 lh-copy f6" >Ticker/Symbol</label>
                         <input className ="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l br2-ns br--left-ns pb1" onChange = {this.handleChange} type="text" id="ticker" name="ticker" placeholder="AMZN" value = {this.state.ticker}></input><br/><br/>
 
-                        <label class="db fw4 lh-copy f6" >Quantity</label>
+                        <label className="db fw4 lh-copy f6" >Quantity</label>
                         <input className ="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l br2-ns br--left-ns pb1" onChange = {this.handleChange} type="number" id ="quantity" name="quantity" placeholder= "0" value = {this.state.quantity}></input><br/><br/>
 
                         <input className="f6 f5-l button-reset fl pv3 tc bn bg-animate bg-black-70 hover-bg-black white pointer w-100 w-25-m w-20-l br2-ns br--right-ns" type="submit" value="Get Price"></input>
@@ -70,9 +70,7 @@ export default class FormContainer extends Component {
 
 
                     </fieldset>
-                </form><br/><br/>
-               
-                
+                </form><br/><br/>   
             </div>
         )
     }

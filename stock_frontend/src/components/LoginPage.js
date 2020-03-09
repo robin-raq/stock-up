@@ -26,24 +26,27 @@ export default class LoginPage extends Component {
             if (data.token) {
                 localStorage.token = data.token
     
-                this.props.history.push('/profile')
+                this.props.history.push('/portfolio')
                 // this.props.redirect('profile')
     
+            }
+            else{
+                alert("incorrect credentials, please try again")
             }
         })
     }
 
     render() {
-        console.log(this.state)
+        // console.log(this.state)
         return (
             <main className = "pa4 black-80">
                 <form className = "measure center" onSubmit={this.handleSubmit}>
                     <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                         <legend className="f4 fw6 ph0 mh0">Login</legend>
-                        <div class="mt3">
+                        <div className="mt3">
                             <input className="pa2 input-reset ba hover-bg-black hover-white w-100" onChange={this.handleChange} value={this.state.email} type="email" name="email" placeholder= "email"/>
                         </div>
-                        <div class="mv3">
+                        <div className="mv3">
                             <input className ="b pa2 input-reset ba  hover-bg-black hover-white w-100" onChange={this.handleChange} value={this.state.password} type="password" name="password" placeholder="password"/>
                         </div>
                     </fieldset>
