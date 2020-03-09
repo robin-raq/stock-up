@@ -14781,3 +14781,1114 @@ Completed 200 OK in 18ms (Views: 1.4ms | ActiveRecord: 3.7ms | Allocations: 1086
 Completed 200 OK in 23ms (Views: 0.6ms | ActiveRecord: 5.9ms | Allocations: 12956)
 
 
+Started GET "/profile" for ::1 at 2020-03-09 15:12:15 -0400
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (12.5ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 7, ticker: "CLH", quantity: 3, user_id: 3, created_at: "2020-03-09 18:47:44", updated_at: "2020-03-09 18:47:44">
+[active_model_serializers]   [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 3, ticker: "CLH", quantity: 3, price: 0.5503e2, user_id: 3, created_at: "2020-03-09 18:47:44", updated_at: "2020-03-09 18:47:44">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (56.51ms)
+Completed 200 OK in 120ms (Views: 45.9ms | ActiveRecord: 58.0ms | Allocations: 26533)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 15:12:15 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.4ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 7, ticker: "CLH", quantity: 3, user_id: 3, created_at: "2020-03-09 18:47:44", updated_at: "2020-03-09 18:47:44">
+[active_model_serializers]   [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 3]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 3, ticker: "CLH", quantity: 3, price: 0.5503e2, user_id: 3, created_at: "2020-03-09 18:47:44", updated_at: "2020-03-09 18:47:44">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (34.92ms)
+Completed 200 OK in 37ms (Views: 34.6ms | ActiveRecord: 1.1ms | Allocations: 5414)
+
+
+Started POST "/transactions" for ::1 at 2020-03-09 15:12:29 -0400
+Started POST "/holdings" for ::1 at 2020-03-09 15:12:29 -0400
+Processing by TransactionsController#create as JSON
+  Parameters: {"ticker"=>"NKE", "price"=>84.25, "quantity"=>"10", "user_id"=>3, "total"=>"842.50", "transaction"=>{"ticker"=>"NKE", "quantity"=>"10", "price"=>84.25, "user_id"=>3}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:10:in `create'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "hopecaneel@gmail.com"], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:12:in `create'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/transactions_controller.rb:14:in `create'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "balance" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["balance", "1404.59999999999991"], ["updated_at", "2020-03-09 19:12:29.940705"], ["id", 3]]
+  ↳ app/controllers/transactions_controller.rb:14:in `create'
+Processing by HoldingsController#create as JSON
+  Parameters: {"ticker"=>"NKE", "price"=>84.25, "quantity"=>"10", "user_id"=>3, "total"=>"842.50", "holding"=>{"ticker"=>"NKE", "quantity"=>"10", "user_id"=>3}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/holdings_controller.rb:8:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "hopecaneel@gmail.com"], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/holdings_controller.rb:10:in `create'
+  [1m[35m (11.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/transactions_controller.rb:14:in `create'
+[31mUnpermitted parameters: :total, :transaction[0m
+  [1m[36mHolding Load (0.9ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1 AND "holdings"."ticker" = $2 LIMIT $3[0m  [["user_id", 3], ["ticker", "NKE"], ["LIMIT", 1]]
+  ↳ app/controllers/holdings_controller.rb:11:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE Holding Load (0.0ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1 AND "holdings"."ticker" = $2 LIMIT $3[0m  [["user_id", 3], ["ticker", "NKE"], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+  ↳ app/controllers/holdings_controller.rb:12:in `create'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/holdings_controller.rb:15:in `create'
+  [1m[36mTransaction Create (1.0ms)[0m  [1m[32mINSERT INTO "transactions" ("ticker", "quantity", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["ticker", "NKE"], ["quantity", 10], ["price", "84.25"], ["user_id", 3], ["created_at", "2020-03-09 19:12:29.961256"], ["updated_at", "2020-03-09 19:12:29.961256"]]
+  [1m[36mHolding Update (0.8ms)[0m  [1m[33mUPDATE "holdings" SET "quantity" = $1, "updated_at" = $2 WHERE "holdings"."id" = $3[0m  [["quantity", 13], ["updated_at", "2020-03-09 19:12:29.959775"], ["id", 10]]
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+  ↳ app/controllers/holdings_controller.rb:15:in `create'
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.39ms)
+Completed 200 OK in 38ms (Views: 1.7ms | ActiveRecord: 21.7ms | Allocations: 15353)
+
+
+  [1m[35m (11.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/holdings_controller.rb:15:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.25ms)
+Completed 200 OK in 27ms (Views: 0.6ms | ActiveRecord: 15.3ms | Allocations: 10223)
+
+
+Started POST "/login" for ::1 at 2020-03-09 16:49:07 -0400
+Processing by AuthController#login as JSON
+  Parameters: {"email"=>"raq@gmail.com", "password"=>"[FILTERED]", "auth"=>{"email"=>"raq@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (7.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "raq@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/auth_controller.rb:5:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.27ms)
+Completed 200 OK in 250ms (Views: 0.6ms | ActiveRecord: 7.3ms | Allocations: 1202)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:49:08 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (2.0ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.7ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (10.53ms)
+Completed 200 OK in 17ms (Views: 8.3ms | ActiveRecord: 6.1ms | Allocations: 3983)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:49:08 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.4ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (2.0ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (8.46ms)
+Completed 200 OK in 11ms (Views: 6.6ms | ActiveRecord: 2.9ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:49:53 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.53ms)
+Completed 200 OK in 7ms (Views: 5.1ms | ActiveRecord: 1.1ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:49:55 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.4ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.97ms)
+Completed 200 OK in 9ms (Views: 5.5ms | ActiveRecord: 2.3ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:49:55 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (4.86ms)
+Completed 200 OK in 7ms (Views: 4.8ms | ActiveRecord: 0.9ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:51:42 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (6.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.8ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (1.7ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (9.54ms)
+Completed 200 OK in 18ms (Views: 7.5ms | ActiveRecord: 8.7ms | Allocations: 3978)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:51:42 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.4ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (3.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (25.2ms)
+Completed 200 OK in 27ms (Views: 22.0ms | ActiveRecord: 3.9ms | Allocations: 3962)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:52:08 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.12ms)
+Completed 200 OK in 9ms (Views: 6.3ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:52:08 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.8ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.94ms)
+Completed 200 OK in 9ms (Views: 6.3ms | ActiveRecord: 1.5ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:52:26 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.55ms)
+Completed 200 OK in 9ms (Views: 6.5ms | ActiveRecord: 0.9ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:52:26 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (7.07ms)
+Completed 200 OK in 10ms (Views: 7.1ms | ActiveRecord: 1.4ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:53:36 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.54ms)
+Completed 200 OK in 9ms (Views: 6.5ms | ActiveRecord: 0.8ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:53:36 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.8ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.6ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (7.71ms)
+Completed 200 OK in 10ms (Views: 6.8ms | ActiveRecord: 1.9ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:55:21 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.4ms)
+Completed 200 OK in 9ms (Views: 6.5ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:55:21 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (1.1ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.87ms)
+Completed 200 OK in 9ms (Views: 5.9ms | ActiveRecord: 1.9ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:55:35 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (2.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (7.48ms)
+Completed 200 OK in 11ms (Views: 5.2ms | ActiveRecord: 3.9ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:55:35 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.41ms)
+Completed 200 OK in 9ms (Views: 6.3ms | ActiveRecord: 1.2ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:55:44 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (1.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (7.49ms)
+Completed 200 OK in 10ms (Views: 6.6ms | ActiveRecord: 1.6ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:55:54 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (1.9ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (7.68ms)
+Completed 200 OK in 10ms (Views: 6.1ms | ActiveRecord: 2.5ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:55:54 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (4.12ms)
+Completed 200 OK in 6ms (Views: 4.1ms | ActiveRecord: 0.6ms | Allocations: 3960)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:55:55 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.99ms)
+Completed 200 OK in 8ms (Views: 6.0ms | ActiveRecord: 0.8ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:57:01 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.95ms)
+Completed 200 OK in 8ms (Views: 5.8ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:57:34 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.91ms)
+Completed 200 OK in 12ms (Views: 6.9ms | ActiveRecord: 3.6ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:57:36 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (4.7ms)
+Completed 200 OK in 7ms (Views: 4.6ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:57:36 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (3.96ms)
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:57:37 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.81ms)
+Completed 200 OK in 9ms (Views: 6.6ms | ActiveRecord: 1.0ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:57:41 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.8ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (7.07ms)
+Completed 200 OK in 9ms (Views: 6.4ms | ActiveRecord: 1.4ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:57:41 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.03ms)
+Completed 200 OK in 7ms (Views: 4.9ms | ActiveRecord: 0.8ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:57:44 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.81ms)
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:58:11 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.37ms)
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:58:13 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.4ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.29ms)
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.8ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:58:13 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (13.2ms)
+Completed 200 OK in 16ms (Views: 13.2ms | ActiveRecord: 1.4ms | Allocations: 3962)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:58:42 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.04ms)
+Completed 200 OK in 8ms (Views: 6.0ms | ActiveRecord: 0.8ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:58:42 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (4.86ms)
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 1.6ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:58:59 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.4ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.18ms)
+Completed 200 OK in 9ms (Views: 6.1ms | ActiveRecord: 0.9ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 16:58:59 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (7.63ms)
+Completed 200 OK in 10ms (Views: 7.5ms | ActiveRecord: 0.9ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:00:58 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.4ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.15ms)
+Completed 200 OK in 10ms (Views: 6.1ms | ActiveRecord: 1.0ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:00:58 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.99ms)
+Completed 200 OK in 8ms (Views: 5.9ms | ActiveRecord: 0.8ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:01:11 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (4.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (4.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (14.85ms)
+Completed 200 OK in 18ms (Views: 6.6ms | ActiveRecord: 9.1ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:01:11 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.7ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.43ms)
+Completed 200 OK in 8ms (Views: 5.8ms | ActiveRecord: 1.2ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:02:08 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.73ms)
+Completed 200 OK in 8ms (Views: 5.6ms | ActiveRecord: 0.8ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:02:08 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.67ms)
+Completed 200 OK in 8ms (Views: 6.7ms | ActiveRecord: 0.6ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:02:30 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (4.96ms)
+Completed 200 OK in 7ms (Views: 5.1ms | ActiveRecord: 0.6ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:02:30 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.39ms)
+Completed 200 OK in 8ms (Views: 5.3ms | ActiveRecord: 1.0ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:02:46 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (12.18ms)
+Completed 200 OK in 14ms (Views: 12.2ms | ActiveRecord: 0.6ms | Allocations: 3962)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:02:46 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (7.22ms)
+Completed 200 OK in 9ms (Views: 7.1ms | ActiveRecord: 0.8ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:03:04 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.51ms)
+Completed 200 OK in 7ms (Views: 5.5ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:03:04 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (7.03ms)
+Completed 200 OK in 10ms (Views: 6.9ms | ActiveRecord: 1.3ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:04:15 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.53ms)
+Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:04:15 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.1ms)
+Completed 200 OK in 9ms (Views: 6.0ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:04:32 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (2.4ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (7.72ms)
+Completed 200 OK in 11ms (Views: 5.7ms | ActiveRecord: 3.3ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:04:34 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (4.25ms)
+Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:04:34 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.97ms)
+Completed 200 OK in 8ms (Views: 5.7ms | ActiveRecord: 0.8ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:04:35 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.48ms)
+Completed 200 OK in 8ms (Views: 5.5ms | ActiveRecord: 0.9ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:04:36 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (6.34ms)
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.7ms | Allocations: 3959)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:04:36 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.4ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.34ms)
+Completed 200 OK in 7ms (Views: 5.0ms | ActiveRecord: 0.9ms | Allocations: 3959)
+
+
+Started POST "/users" for ::1 at 2020-03-09 17:05:57 -0400
+Processing by UsersController#create as JSON
+  Parameters: {"name"=>"jenn", "email"=>"jenn@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"jenn", "email"=>"jenn@gmail.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jenn@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "jenn"], ["email", "jenn@gmail.com"], ["password_digest", "$2a$12$GRga0a0Al1JksE.cBl/Nc.7GQyevLXJyvgKIH8YY7NPNhHpb.OjOu"], ["created_at", "2020-03-09 21:05:58.233103"], ["updated_at", "2020-03-09 21:05:58.233103"]]
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "jenn@gmail.com"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.28ms)
+Completed 200 OK in 258ms (Views: 0.7ms | ActiveRecord: 4.0ms | Allocations: 4622)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:05:58 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.5ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.27ms)
+Completed 200 OK in 7ms (Views: 5.0ms | ActiveRecord: 1.0ms | Allocations: 3331)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:05:58 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (4.64ms)
+Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 1.3ms | Allocations: 3329)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:06:32 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (4.32ms)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.7ms | Allocations: 3329)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:06:32 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.7ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers]   [1m[36mTransaction Load (0.2ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 4]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.42ms)
+Completed 200 OK in 8ms (Views: 4.9ms | ActiveRecord: 1.5ms | Allocations: 3329)
+
+
+Started POST "/transactions" for ::1 at 2020-03-09 17:06:53 -0400
+Started POST "/holdings" for ::1 at 2020-03-09 17:06:53 -0400
+Processing by TransactionsController#create as JSON
+  Parameters: {"ticker"=>"NKE", "price"=>84.11, "quantity"=>"20", "user_id"=>4, "total"=>"1682.20", "transaction"=>{"ticker"=>"NKE", "quantity"=>"20", "price"=>84.11, "user_id"=>4}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:10:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "jenn@gmail.com"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:12:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/transactions_controller.rb:14:in `create'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "balance" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["balance", "3317.8"], ["updated_at", "2020-03-09 21:06:53.975127"], ["id", 4]]
+  ↳ app/controllers/transactions_controller.rb:14:in `create'
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/transactions_controller.rb:14:in `create'
+[31mUnpermitted parameters: :total, :transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+  [1m[36mTransaction Create (0.7ms)[0m  [1m[32mINSERT INTO "transactions" ("ticker", "quantity", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["ticker", "NKE"], ["quantity", 20], ["price", "84.11"], ["user_id", 4], ["created_at", "2020-03-09 21:06:53.982288"], ["updated_at", "2020-03-09 21:06:53.982288"]]
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.29ms)
+Completed 200 OK in 13ms (Views: 0.6ms | ActiveRecord: 4.0ms | Allocations: 7657)
+
+
+Processing by HoldingsController#create as JSON
+  Parameters: {"ticker"=>"NKE", "price"=>84.11, "quantity"=>"20", "user_id"=>4, "total"=>"1682.20", "holding"=>{"ticker"=>"NKE", "quantity"=>"20", "user_id"=>4}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/holdings_controller.rb:8:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "jenn@gmail.com"], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/holdings_controller.rb:10:in `create'
+  [1m[36mHolding Load (0.4ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1 AND "holdings"."ticker" = $2 LIMIT $3[0m  [["user_id", 4], ["ticker", "NKE"], ["LIMIT", 1]]
+  ↳ app/controllers/holdings_controller.rb:11:in `create'
+[31mUnpermitted parameters: :price, :total, :holding[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/holdings_controller.rb:19:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/holdings_controller.rb:19:in `create'
+  [1m[36mHolding Create (0.8ms)[0m  [1m[32mINSERT INTO "holdings" ("ticker", "quantity", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticker", "NKE"], ["quantity", 20], ["user_id", 4], ["created_at", "2020-03-09 21:06:53.997039"], ["updated_at", "2020-03-09 21:06:53.997039"]]
+  ↳ app/controllers/holdings_controller.rb:19:in `create'
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/holdings_controller.rb:19:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.32ms)
+Completed 200 OK in 17ms (Views: 1.0ms | ActiveRecord: 8.4ms | Allocations: 5820)
+
+
+Started POST "/login" for ::1 at 2020-03-09 17:38:30 -0400
+  [1m[35m (7.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthController#login as JSON
+  Parameters: {"email"=>"raq@gmail.com", "password"=>"[FILTERED]", "auth"=>{"email"=>"raq@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "raq@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/auth_controller.rb:5:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.4ms)
+Completed 200 OK in 265ms (Views: 3.5ms | ActiveRecord: 13.7ms | Allocations: 8456)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:38:30 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.6ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (66.03ms)
+Completed 200 OK in 90ms (Views: 71.8ms | ActiveRecord: 14.0ms | Allocations: 18077)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:38:30 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.2ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Holding id: 1, ticker: "FB", quantity: 4, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers]   [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] No serializer found for resource: #<Transaction id: 1, ticker: "fb", quantity: 4, price: 0.1e3, user_id: 1, created_at: "2020-03-09 18:43:33", updated_at: "2020-03-09 18:43:33">
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (5.81ms)
+Completed 200 OK in 7ms (Views: 5.5ms | ActiveRecord: 1.0ms | Allocations: 3959)
+
+
+Started POST "/users" for ::1 at 2020-03-09 17:40:03 -0400
+Processing by UsersController#create as JSON
+  Parameters: {"name"=>"Bill", "email"=>"bill@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Bill", "email"=>"bill@gmail.com"}}
+[31mUnpermitted parameter: :user[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bill@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Bill"], ["email", "bill@gmail.com"], ["password_digest", "$2a$12$wxGXvg3eniabaouiK6uHdepXcVUNwoxL1B2/2eiO/4OPzx.wlquOy"], ["created_at", "2020-03-09 21:40:04.274289"], ["updated_at", "2020-03-09 21:40:04.274289"]]
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:24:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "bill@gmail.com"], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.22ms)
+Completed 200 OK in 254ms (Views: 0.7ms | ActiveRecord: 9.3ms | Allocations: 9010)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:40:04 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.3ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 5]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers]   [1m[36mTransaction Load (0.5ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 5]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (15.79ms)
+Completed 200 OK in 21ms (Views: 11.6ms | ActiveRecord: 7.0ms | Allocations: 5700)
+
+
+Started GET "/profile" for ::1 at 2020-03-09 17:40:04 -0400
+Processing by UsersController#profile as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:19:in `profile'
+[active_model_serializers]   [1m[36mHolding Load (0.4ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1[0m  [["user_id", 5]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers]   [1m[36mTransaction Load (0.3ms)[0m  [1m[34mSELECT "transactions".* FROM "transactions" WHERE "transactions"."user_id" = $1[0m  [["user_id", 5]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:20:in `profile'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (3.92ms)
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 1.0ms | Allocations: 3330)
+
+
+Started POST "/transactions" for ::1 at 2020-03-09 17:40:31 -0400
+Started POST "/holdings" for ::1 at 2020-03-09 17:40:31 -0400
+Processing by TransactionsController#create as JSON
+  Parameters: {"ticker"=>"AMZN", "price"=>1800.495, "quantity"=>"1", "user_id"=>5, "total"=>"1800.49", "transaction"=>{"ticker"=>"AMZN", "quantity"=>"1", "price"=>1800.495, "user_id"=>5}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:10:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "bill@gmail.com"], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:12:in `create'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/transactions_controller.rb:14:in `create'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "balance" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["balance", "3199.51"], ["updated_at", "2020-03-09 21:40:31.760748"], ["id", 5]]
+  ↳ app/controllers/transactions_controller.rb:14:in `create'
+Processing by HoldingsController#create as JSON
+  Parameters: {"ticker"=>"AMZN", "price"=>1800.495, "quantity"=>"1", "user_id"=>5, "total"=>"1800.49", "holding"=>{"ticker"=>"AMZN", "quantity"=>"1", "user_id"=>5}}
+  [1m[35m (6.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/transactions_controller.rb:14:in `create'
+[31mUnpermitted parameters: :total, :transaction[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/holdings_controller.rb:8:in `create'
+  [1m[36mUser Exists? (5.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "bill@gmail.com"], ["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+  ↳ app/controllers/holdings_controller.rb:10:in `create'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+  [1m[36mHolding Load (0.6ms)[0m  [1m[34mSELECT "holdings".* FROM "holdings" WHERE "holdings"."user_id" = $1 AND "holdings"."ticker" = $2 LIMIT $3[0m  [["user_id", 5], ["ticker", "AMZN"], ["LIMIT", 1]]
+  [1m[36mTransaction Create (0.9ms)[0m  [1m[32mINSERT INTO "transactions" ("ticker", "quantity", "price", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["ticker", "AMZN"], ["quantity", 1], ["price", "1800.495"], ["user_id", 5], ["created_at", "2020-03-09 21:40:31.782680"], ["updated_at", "2020-03-09 21:40:31.782680"]]
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+  ↳ app/controllers/holdings_controller.rb:11:in `create'
+[31mUnpermitted parameters: :price, :total, :holding[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/holdings_controller.rb:19:in `create'
+  [1m[35m (8.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/transactions_controller.rb:16:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.3ms)
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/holdings_controller.rb:19:in `create'
+Completed 200 OK in 39ms (Views: 0.7ms | ActiveRecord: 21.5ms | Allocations: 20933)
+
+
+  [1m[36mHolding Create (1.1ms)[0m  [1m[32mINSERT INTO "holdings" ("ticker", "quantity", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["ticker", "AMZN"], ["quantity", 1], ["user_id", 5], ["created_at", "2020-03-09 21:40:31.794587"], ["updated_at", "2020-03-09 21:40:31.794587"]]
+  ↳ app/controllers/holdings_controller.rb:19:in `create'
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/holdings_controller.rb:19:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.21ms)
+Completed 200 OK in 36ms (Views: 0.5ms | ActiveRecord: 19.3ms | Allocations: 17573)
+
+
