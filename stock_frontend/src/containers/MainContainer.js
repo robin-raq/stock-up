@@ -33,12 +33,18 @@ export default class MainContainer extends Component {
         })
 
     }
-    buyStock =()=>{
+    displayNewStock =(newStock)=>{
+        // let copiedStocks = [...this.state.userStocks]
+        let copiedStocks = this.state.userStocks.filter(stock => stock.ticker !== newStock.ticker )
+
+        this.setState({
+            userStocks:[newStock, ...copiedStocks]
+        })
 
     }
 
     render() {
-        console.log(this.state.currentUser)
+        // console.log(this.state.currentUser)
         
         return (
             <div>
@@ -49,7 +55,9 @@ export default class MainContainer extends Component {
                     <div className="col-4">
                         <FormContainer 
                             currentUser={this.state.currentUser}  getStockInfo = {this.getStockInfo} 
-                            updateUserBalance ={this.updateUserBalance}/>
+                            updateUserBalance ={this.updateUserBalance}
+                            displayNewStock ={this.displayNewStock}
+                            />
                     </div>
                 </div>
             </div>

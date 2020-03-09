@@ -9,8 +9,12 @@ user2 = User.create(name: "Hope", email: "hope@gmail.com", password: 'pass456')
 
 transaction1 = Transaction.create(ticker: "fb", quantity: 4, price: 100, user: user1)
 
+user1.update_attribute(:balance, 4600)
+
 
 transaction2 = Transaction.create(ticker: "amzn", quantity: 2, price: 100, user: user2)
+
+user1.update_attribute(:balance, 4800)
 
 holding1 = Holding.create(ticker: "FB", quantity: 4, user: user1)
 

@@ -5,8 +5,8 @@ class HomePage extends Component {
     render () {
         console.log(this.props)
         return (
-            <div>
-                <h5>Hi, Welcome to StockUp! Please Select an option from above to proceed. </h5> 
+            <div className="tc ph4">
+                <h5 className="f3 f2-m f1-l fw2 black-90 mv3">Hi, Welcome to StockUp! Please Select an option from above to proceed. </h5> 
                 {/* <ul>
                     <li><Link to="/profile">Profile</Link></li>
                     <li><Link to="/login">Login</Link></li>

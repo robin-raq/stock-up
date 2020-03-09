@@ -14,28 +14,10 @@ class App extends Component{
     currentUser: {}
   }
 
-  // componentDidMount(){
-  //   if (localStorage.token) {
-  //     fetch('http://localhost:3000/profile',{
-  //       headers: {
-  //         'Authorization': `Bearer ${localStorage.token}`
-  //       }
-  //     })
-  //     .then(res => res.json())
-  //     .then((user) => {
-  //       // console.log(user)   
-  //       this.setState({currentUser: user})
-  //     })
-      
-  //   } else {
-  //     this.props.history.push('/login')
-  //   }
-
-  // }
 
   handleLogout =()=>{
     localStorage.clear()
-    // window.location.reload();
+    
   }
 
   render(){

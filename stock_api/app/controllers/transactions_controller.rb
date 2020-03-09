@@ -9,9 +9,10 @@ class TransactionsController < ApplicationController
         # byebug
         user = User.find(params[:user_id])
         
-        if user.valid?
+        if user.valid? && params[:total].to_f <= user.balance
             new_balance= user.balance - params[:total].to_f
-            user.balance= new_balance
+            user.update_attribute(:balance, new_balance)
+            # user.balance= new_balance
             transaction = Transaction.create(transaction_params)
 
             if transaction.valid?
