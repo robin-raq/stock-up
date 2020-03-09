@@ -7,7 +7,7 @@ export default class StockItem extends Component {
     }
 
     componentDidMount(){
-        const newStockObj =  this.getStockInfo(this.props.stock.ticker)  
+        this.getStockInfo(this.props.stock.ticker)  
     }
 
     getStockInfo=(ticker)=>{
@@ -18,7 +18,7 @@ export default class StockItem extends Component {
             // console.log(stockObj["Global Quote"])
             // const stock = {ticker: stockObj["Global Quote"]["01. symbol"], open: stockObj["Global Quote"]["02. open"], price: stockObj["Global Quote"]["05. price"], previousClose: stockObj["Global Quote"]["08. previous close"] }
 
-            console.log(stockObj)
+            // console.log(stockObj)
             const IEXStock = {
                 ticker:stockObj.symbol,
                 open: stockObj.open,
@@ -46,13 +46,13 @@ export default class StockItem extends Component {
     
 
     render() {
-        console.log(this.props.stock.ticker)
+        // console.log(this.props.stock.ticker)
         return (
             <div>
                 <div className="card" style ={{background: this.myColor()}}>
                     <div className="card-body">
                         <h5 className="card-title">{this.props.stock.ticker}</h5>
-                        <p className="card-text">{this.props.stock.quantity} shares : ${this.state.marketStock.price}</p>
+                        <p className="card-text">{this.props.stock.quantity} shares : ${(this.state.marketStock.price * this.props.stock.quantity).toFixed(2)}</p>
                     </div>
                 </div>
                 

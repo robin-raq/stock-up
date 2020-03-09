@@ -5,8 +5,7 @@ export default function Header(props) {
     
     return (
         <header className="bg-white black-80 tc pv2 avenir">
-            <a href="" className="bg-black-80 ba b--black dib pa2 w2 h2 br-100">    
-            </a>
+            
             <h1 className="mt2 mb0 baskerville i fw1 f1">Stock Up!</h1>
             <h2 className="mt2 mb0 f6 fw4 ttu tracked">Manage Your Portfolio with Ease</h2>
             

@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PortfolioContainer from './PortfolioContainer';
 import FormContainer from './FormContainer';
-import tokens from '../config_keys.js';
-import { Switch, Route, withRouter } from 'react-router-dom';
 
 export default class MainContainer extends Component {
 
     state = {
         userStocks: [],
         currentUser: {},
-        userBalance: 0
     }
     
     componentDidMount(){
@@ -25,16 +22,23 @@ export default class MainContainer extends Component {
             this.setState({
                 userStocks: user.holdings,
                 currentUser: user,
-                userBalance: user.balance
             })
         })
         
+    }
+
+    updateUserBalance =(userObj)=>{
+        this.setState({
+            currentUser: userObj
+        })
+
     }
     buyStock =()=>{
 
     }
 
     render() {
+        console.log(this.state.currentUser)
         
         return (
             <div>
@@ -43,7 +47,9 @@ export default class MainContainer extends Component {
                         <PortfolioContainer currentUser={this.state.currentUser} stocks = {this.state.userStocks} getStockInfo = {this.getStockInfo}/>
                     </div>
                     <div className="col-4">
-                        <FormContainer currentUser={this.state.currentUser} balance= {this.state.userBalance} getStockInfo = {this.getStockInfo} buyStock ={this.buyStock}/>
+                        <FormContainer 
+                            currentUser={this.state.currentUser}  getStockInfo = {this.getStockInfo} 
+                            updateUserBalance ={this.updateUserBalance}/>
                     </div>
                 </div>
             </div>
