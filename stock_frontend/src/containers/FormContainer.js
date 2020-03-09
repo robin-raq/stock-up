@@ -156,10 +156,7 @@ export default class FormContainer extends Component {
                         </input>
                     </div>
 
-                </fieldset>
-                </form><br/><br/>   
-
-                { 
+                    { 
                     this.state.displayQuote ?
                     <>
                         <span>
@@ -179,6 +176,11 @@ export default class FormContainer extends Component {
                     <div></div>
 
                 }
+
+                </fieldset>
+                </form><br/><br/>   
+
+                
             </div>
         )
     }
