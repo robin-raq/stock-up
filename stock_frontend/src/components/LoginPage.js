@@ -24,33 +24,46 @@ export default class LoginPage extends Component {
         .then(data => {
             if (data.token) {
                 localStorage.token = data.token
-    
                 this.props.history.push('/portfolio')
-                // this.props.redirect('profile')
-    
             }
             else{
-                alert("incorrect credentials, please try again")
+                alert("Incorrect credentials, please try again!")
             }
         })
     }
 
     render() {
-        // console.log(this.state)
         return (
             <main className = "pa4 black-80">
                 <form className = "measure center" onSubmit={this.handleSubmit}>
                     <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                         <legend className="f4 fw6 ph0 mh0">Login</legend>
                         <div className="mt3">
-                            <input className="pa2 input-reset ba hover-bg-black hover-white w-100" onChange={this.handleChange} value={this.state.email} type="email" name="email" placeholder= "email"/>
+                            <input 
+                                className="pa2 input-reset ba hover-bg-black hover-white w-100" 
+                                onChange={this.handleChange} 
+                                value={this.state.email} 
+                                type="email" 
+                                name="email" 
+                                placeholder= "email"
+                            />
                         </div>
                         <div className="mv3">
-                            <input className ="b pa2 input-reset ba  hover-bg-black hover-white w-100" onChange={this.handleChange} value={this.state.password} type="password" name="password" placeholder="password"/>
+                            <input 
+                                className ="b pa2 input-reset ba  hover-bg-black hover-white w-100" 
+                                onChange={this.handleChange} 
+                                value={this.state.password} 
+                                type="password" 
+                                name="password" 
+                                placeholder="password"/>
                         </div>
                     </fieldset>
                     <div>
-                        <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Login"/>
+                        <input 
+                            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
+                            type="submit" 
+                            value="Login"
+                        />
                     </div>
                 </form>
             </main>

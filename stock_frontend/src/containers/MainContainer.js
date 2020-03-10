@@ -6,7 +6,7 @@ export default class MainContainer extends Component {
 
     state = {
         userStocks: [],
-        currentUser: {},
+        currentUser: {}
     }
     
     componentDidMount(){
@@ -27,16 +27,8 @@ export default class MainContainer extends Component {
         
     }
 
-    updateUserBalance =(userObj)=>{
-        this.setState({
-            currentUser: userObj
-        })
-
-    }
     displayNewStock =(newStock)=>{
-        // let copiedStocks = [...this.state.userStocks]
         let copiedStocks = this.state.userStocks.filter(stock => stock.ticker !== newStock.ticker )
-
         this.setState({
             userStocks:[newStock, ...copiedStocks]
         })
@@ -45,19 +37,20 @@ export default class MainContainer extends Component {
 
     render() {
         // console.log(this.state.currentUser)
-        
         return (
             <div>
                 <div className="row">
                     <div className="col-8">
-                        <PortfolioContainer currentUser={this.state.currentUser} stocks = {this.state.userStocks} getStockInfo = {this.getStockInfo}/>
+                        <PortfolioContainer 
+                            currentUser={this.state.currentUser} 
+                            stocks = {this.state.userStocks}
+                        />
                     </div>
                     <div className="col-4">
                         <FormContainer 
-                            currentUser={this.state.currentUser}  getStockInfo = {this.getStockInfo} 
-                            updateUserBalance ={this.updateUserBalance}
+                            currentUser={this.state.currentUser}  
                             displayNewStock ={this.displayNewStock}
-                            />
+                        />
                     </div>
                 </div>
             </div>

@@ -12,6 +12,22 @@ export default class FormContainer extends Component {
         canBuy: false
     }
 
+    componentDidMount(){
+        fetch('http://localhost:3000/profile',{
+            headers: {
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        })
+        .then(res => res.json())
+        .then((user) => {
+            // console.log(user)   
+            const newBalance = parseInt(user.balance).toFixed(2)
+            this.setState({
+                balance: newBalance
+            })
+        })
+    }
+
     handleChange = (evt)=>{
         this.setState({
             [evt.target.name]: evt.target.value
@@ -23,24 +39,22 @@ export default class FormContainer extends Component {
         fetch(`https://cloud.iexapis.com/stable/stock/${this.state.ticker}/quote?token=${tokens.IEX_TOKEN}`)
         .then(r => r.json())
         .then((stockObj) => {
-            
+            console.log("Get Price Response", stockObj)
+
             const newTotal = this.state.quantity * stockObj.latestPrice
             const transaction = { ticker: stockObj.symbol, price: stockObj.latestPrice, quantity: this.state.quantity, user_id: this.props.currentUser.id, total: newTotal.toFixed(2)}
-
             const canBuy = (parseInt(transaction.total) <= parseInt(this.state.balance))
 
-            console.log (transaction.total, this.state.balance)
-            console.log (parseInt(transaction.total) <= parseInt(this.state.balance))
 
             this.setState({
                 transaction: transaction,
                 total: newTotal,
                 displayQuote: true,
-                canBuy: canBuy
-                
+                canBuy: canBuy   
             })
-        }).catch((error) => {
-            alert("Please Verify Stock Symbol and Try Again")
+        })
+        .catch((error) => {
+            alert("Please Verify Stock Symbol And Try Again")
         });
     }
 
@@ -56,7 +70,7 @@ export default class FormContainer extends Component {
         })
         .then(resp => resp.json())
         .then(respObj=> {
-            console.log(respObj.transaction, respObj.user)
+            console.log("Transaction and User response from DB", respObj)
             this.setState({
                 balance:  respObj.user.balance
             })
@@ -77,7 +91,7 @@ export default class FormContainer extends Component {
         })
         .then(resp => resp.json())
         .then(respObj=> {
-            // console.log(respObj.holding)
+            console.log("User's Holdings from DB", respObj.holding)
             this.props.displayNewStock(respObj.holding)
             this.setState({ticker: '', quantity: 0, displayQuote: false, canBuy: false})
             
@@ -86,22 +100,6 @@ export default class FormContainer extends Component {
         });
     }
 
-    componentDidMount(){
-        fetch('http://localhost:3000/profile',{
-            headers: {
-                'Authorization': `Bearer ${localStorage.token}`
-            }
-        })
-        .then(res => res.json())
-        .then((user) => {
-            // console.log(user)   
-            const newBalance = parseInt(user.balance).toFixed(2)
-            this.setState({
-                balance: newBalance
-            })
-        })
-
-    }
 
     
     
@@ -109,10 +107,8 @@ export default class FormContainer extends Component {
         // console.log("currentUser's Balance", this.state.balance)
         const {price} = this.state.transaction
         return (
-            <div className="pa4-l">
+            <div className="pa4-l avenir">
                 <h2>Purchase Stocks</h2>
-
-
                 <form 
                     className="bg-light-yellow mw7 center pa4 br2-ns ba b--black-10" 
                     onSubmit = {this.handleSubmit}
@@ -121,14 +117,12 @@ export default class FormContainer extends Component {
                     <legend className="pa0 f5 f4-ns mb3 black-80"> 
                         {
                             this.state.balance >= 0 ? 
-                                <strong>Current Balance: ${parseInt(this.state.balance).toFixed(2)}</strong>  
+                                <strong className="text-">Current Balance: ${parseInt(this.state.balance).toFixed(2)}</strong>  
                             :   <strong>Current Balance: $ INSUFFICIENT FUNDS </strong>
                         }
-                    
                     </legend>
 
                     <div className="cf">
-
                         <label className="db fw4 lh-copy f6" >Ticker/Symbol</label>
                         <input 
                             className ="f6 f5-l input-reset bn fl black-80 bg-white pa3 lh-solid w-100 w-75-m w-80-l br2-ns br--left-ns pb1" 
@@ -145,7 +139,7 @@ export default class FormContainer extends Component {
                             type="number"  
                             name="quantity" 
                             min="1" 
-                            placeholder= " 1" 
+                            placeholder= " 0" 
                             value = {this.state.quantity}>
                         </input><br/><br/>
 
@@ -154,7 +148,7 @@ export default class FormContainer extends Component {
                             type="submit" 
                             value="Get Price">
                         </input>
-                    </div>
+                    </div><br/><br/>
 
                     { 
                     this.state.displayQuote ?
@@ -174,13 +168,10 @@ export default class FormContainer extends Component {
                     </>
                     :
                     <div></div>
-
                 }
 
                 </fieldset>
-                </form><br/><br/>   
-
-                
+                </form><br/><br/>       
             </div>
         )
     }
