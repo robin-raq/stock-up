@@ -4,7 +4,8 @@ export default class SignUpPage extends Component {
     state ={
         name: '',
         email: '',
-        password: ''
+        password: '',
+        balance: 5000.00
     }
 
     handleChange = (evt) => {
