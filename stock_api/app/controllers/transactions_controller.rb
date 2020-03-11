@@ -12,7 +12,6 @@ class TransactionsController < ApplicationController
         if user.valid? && params[:total].to_f <= user.balance
             new_balance= user.balance - params[:total].to_f
             user.update_attribute(:balance, new_balance)
-            # user.balance= new_balance
             transaction = Transaction.create(transaction_params)
 
             if transaction.valid?

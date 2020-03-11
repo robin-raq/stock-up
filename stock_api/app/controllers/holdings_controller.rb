@@ -11,7 +11,6 @@ class HoldingsController < ApplicationController
             if user.holdings.find_by(ticker: params[:ticker])
                 holding = user.holdings.find_by(ticker: params[:ticker])
                 new_quantity = holding.quantity + params[:quantity].to_i
-                # holding.quantity= new_quantity
                 holding.update_attribute(:quantity, new_quantity)
                 render json: {holding: holding}
 
