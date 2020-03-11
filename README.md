@@ -61,15 +61,18 @@ This web app uses the following API keys from:
     - Header
     - LoginPage
     - SignUpPage
-    - NavBar
+    - HomePage
+    -FourOhFourPage
+    - TransactionsPage
+            - TransactionItem
     - MainContainer
         - PortfolioContainer
             - StockItem
         - PurchaseForm
-        - TransactionsContainer
-            - TransactionItem
+        
 
 
-**Entity Relationship Diagram**
+**Additional Info**
 --------------------------------
-![Image](https://lh3.google.com/u/0/d/1VVo_25mFscRzdPydZ7TvKrIxfxVOW72G=w2874-h1347-iv1)
+
+*For full commit history  please see initial repo click here: [stock-portfolio-app](https://github.com/robin-raq/stock-portfolio-app)*
