@@ -7,6 +7,10 @@
 ------------
 ![stock-up-demo](images/stock-up.gif)
 
+**Try it here** 
+------------
+https://stock-up.netlify.com/
+
 **Features**
 ------------
 Stock Up is an app that aims to provide users a convenient way to buy for stocks and monitor their portfolio. 
