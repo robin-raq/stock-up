@@ -17,13 +17,15 @@ export default class StockItem extends Component {
         .then(r => r.json())
         .then((stockObj) => {
             console.log("Portfolio Stock's API response", stockObj) 
+            let stockTotal = parseInt(stockObj["Global Quote"]["05. price"]) * parseInt(this.props.stock.quantity)
+            console.log("stock total", stockTotal)
             const alphaStock = {
                 ticker: stockObj["Global Quote"]["01. symbol"], 
                 open: stockObj["Global Quote"]["02. open"], 
                 price: stockObj["Global Quote"]["05. price"], 
                 previousClose: stockObj["Global Quote"]["08. previous close"]
             }
-
+            this.props.updateTotal(stockTotal)
             this.setState({
                 marketStock: alphaStock
             })
