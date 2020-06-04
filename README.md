@@ -82,6 +82,10 @@ Frontend Installation:
 
 -   Ensure your Backend API is running at `http://localhost:3000/`
 
+-   Create a config.keys.js file inside src folder initialze and export a const tokens = {IEX_TOKEN: `YOUR_IEX_API_KEY`, ALPHAV_TOKEN: `YOUR_ALPHAVANTAGE_API_KEY`}
+
+-   Add the config.keys file to your .gitignore
+
 -   run `npm install && npm start` to run dependencies and start server
 
 -   When prompted, ensure Frontend is running at `http://localhost:3001` or another available port 
