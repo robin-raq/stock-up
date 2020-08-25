@@ -63,6 +63,8 @@ Backend Installation:
 
 - run `bundle install` to resolve dependencies and install needed gems
 
+- add ENV['SECRET'] = "Your_secret" to your environmental variables. Visit `https://jwt.io/introduction/` for more info.
+
 - run `rails s` to start server
 
 - Ensure your Backend API is running at `http://localhost:3000/`
@@ -96,7 +98,7 @@ Frontend Installation:
     - PortfolioContainer
       - StockItem
     - PurchaseForm
-  **Backend Design**
+      **Backend Design**
 
 ---
 
