@@ -6,7 +6,6 @@ class TransactionsController < ApplicationController
     end
 
     def create
-        # byebug
         user = User.find(params[:user_id])
         
         if user.valid? && params[:total].to_f <= user.balance
@@ -25,11 +24,11 @@ class TransactionsController < ApplicationController
     
     end
 
+   
     private
 
     def transaction_params
         params.permit(:ticker, :price, :quantity, :user_id)
     end
-
 
 end

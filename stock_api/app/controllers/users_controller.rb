@@ -2,7 +2,6 @@ class UsersController < ApplicationController
     def index
         users = User.all 
         render json: users, include: "**"
-    
     end
 
     def show
@@ -10,16 +9,6 @@ class UsersController < ApplicationController
         render json: user, include: "**"
     end
 
-
-
-    def profile
-        token = request.headers['Authorization'].split(" ")[1]
-        decoded_token = JWT.decode( token, 'portfolio', true, {algorithm: 'HS256'})
-        user_id = decoded_token[0]["user_id"]
-        current_user = User.find(user_id)
-        render json: current_user
-    end
-    
     def create
         user = User.create(user_params)
     
@@ -32,6 +21,15 @@ class UsersController < ApplicationController
         end
     end
     
+    def profile
+        token = request.headers['Authorization'].split(" ")[1]
+        decoded_token = JWT.decode( token, ENV['SECRET'], true, {algorithm: 'HS256'})
+        user_id = decoded_token[0]["user_id"]
+        current_user = User.find(user_id)
+        render json: current_user
+    end
+    
+
     private
     
         def user_params
