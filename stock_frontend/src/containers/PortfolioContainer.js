@@ -11,7 +11,6 @@ export default class PortfolioContainer extends Component {
     this.setState({ total: newTotal });
   };
   render() {
-    console.log("total", this.state.total);
     let displayTotal = Math.round(this.state.total * 100) / 100;
     return (
       <div>
